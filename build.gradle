@@ -13,14 +13,21 @@ repositories {
 
 dependencies {
 
+    annotationProcessor 'org.projectlombok:lombok'
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.projectlombok:lombok')
 
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude module : 'junit'
     }
 }
-
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 test {
     useJUnitPlatform()
 }
